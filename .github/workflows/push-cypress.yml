@@ -1,0 +1,26 @@
+name: Cypress test while push
+
+on: 
+    pull_request: 
+        types: [opened, review_requested]
+
+jobs:
+    trigger:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Trigger Cypress Workflow
+              run: |
+                repo_owner="hal00010001"
+                repo_name="testes-e2e-cypress"
+                event_type="trigger-workflow"
+                service="development"
+
+                curl -L \
+                    -X POST \
+                    -H "Accept: application/vnd.github+json" \
+                    -H "Authorization: Bearer ${{ secrets.SECRETPAT }}" \
+                    https://api.github.com/repos/$repo_owner/$repo_name/dispatches \
+                    -d "{\"event_type\": \"$event_type\", "client_payload\": {\"$service\": \"$service"\}}"
+
+    
