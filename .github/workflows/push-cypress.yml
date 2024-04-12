@@ -1,11 +1,8 @@
 name: Cypress test while push
 
 on: 
-    workflow_dispatch: 
-        inputs:
-            target_service:
-                description: 'Input a service name'
-                required: true           
+    pull_request: 
+        types: [opened, review_requested]
         
 
 jobs:
