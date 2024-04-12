@@ -3,8 +3,7 @@ name: Cypress test while push
 on: 
     pull_request: 
         types: [opened, review_requested]
-    workflow_dispatch:
-        
+    workflow_dispatch:        
 
 jobs:
     trigger:
