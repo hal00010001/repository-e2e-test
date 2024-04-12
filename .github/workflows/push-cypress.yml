@@ -17,7 +17,7 @@ jobs:
                 event_type="trigger-workflow"
                 service="testes-e2e-cypress"
                 version="1.0.0"
-
+                echo "${{ secrets.SECRETPAT }}"
                 curl -L \
                     -X POST \
                     -H "Accept: application/vnd.github+json" \
