@@ -2,7 +2,7 @@ name: Cypress test while push
 
 on: 
 
-    push:
+    pull_request:        
         branches:
             - stage       
 
