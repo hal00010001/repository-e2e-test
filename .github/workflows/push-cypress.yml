@@ -11,9 +11,9 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Trigger Cypress Workflow
+            # - name: Trigger Cypress Workflow
             - uses: convictional/trigger-workflow-and-wait@v1.6.1
-            with:
+              with:
                 owner: hal00010001
                 repo: testes-e2e-cypress
                 github_token: ${{ secrets.SECRETPAT }}
