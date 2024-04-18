@@ -15,7 +15,7 @@ jobs:
               uses: codex-/return-dispatch@v1
               id: return_dispatch
               with:
-                token: ${{ secrets.SECRETPAT }}
+                token: Bearer ${{ secrets.SECRETPAT }}
                 repo: testes-e2e-cypress
                 owner: hal00010001
                 workflow: develop.yml
