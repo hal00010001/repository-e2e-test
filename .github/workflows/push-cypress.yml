@@ -22,7 +22,7 @@ jobs:
             - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
               uses: Codex-/await-remote-run@v1.0.0
               with:
-                token: ${{ secrets.SECRETPAT }}
+                token: Bearer ${{ secrets.SECRETPAT }}
                 repo: return-dispatch
                 owner: codex-
                 run_id: ${{ steps.return_dispatch.outputs.run_id }}
