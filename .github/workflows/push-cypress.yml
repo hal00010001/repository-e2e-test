@@ -11,28 +11,38 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            # - name: Trigger Cypress Workflow
-            - uses: convictional/trigger-workflow-and-wait@v1.6.1
+            - name: Dispatch an action and get the run ID
+              uses: codex-/return-dispatch@v1
+              id: return_dispatch
               with:
-                owner: hal00010001
+                token: ${{ secrets.SECRETPAT }}
                 repo: testes-e2e-cypress
-                github_token: ${{ secrets.SECRETPAT }}
-                workflow_file_name: develop.yml
-                propagate_failure: true
-                trigger_workflow: true
-                wait_workflow: true
-            #   run: |
-                # repo_owner="hal00010001"
-                # repo_name="testes-e2e-cypress"
-                # event_type="trigger-workflow"
-                # service="testes-e2e-cypress"
-                # version="1.0.0"
-                # curl -L \
-                #     -X POST \
-                #     -H "Accept: application/vnd.github+json" \
-                #     -H "Authorization: Bearer ${{ secrets.SECRETPAT }}" \
-                #     -H "X-Github-Api-Version: 2022-11-28" \
-                #     https://api.github.com/repos/$repo_owner/$repo_name/dispatches \
-                #     -d "{\"event_type\": \"$event_type\", \"client_payload\": {\"service\": \"$service\", \"version\": \"$version\"}, \"integration\": true }"
+                owner: hal00010001
+                workflow: develop.yml
+            - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
+              uses: Codex-/await-remote-run@v1.0.0
+              with:
+                token: ${{ secrets.SECRETPAT }}
+                repo: return-dispatch
+                owner: codex-
+                run_id: ${{ steps.return_dispatch.outputs.run_id }}
+                run_timeout_seconds: 300 # Optional
+                poll_interval_ms: 5000 # Optional
+
+        # steps:
+        #     - name: Trigger Cypress Workflow
+        #       run: |
+        #         repo_owner="hal00010001"
+        #         repo_name="testes-e2e-cypress"
+        #         event_type="trigger-workflow"
+        #         service="testes-e2e-cypress"
+        #         version="1.0.0"
+        #         curl -L \
+        #             -X POST \
+        #             -H "Accept: application/vnd.github+json" \
+        #             -H "Authorization: Bearer ${{ secrets.SECRETPAT }}" \
+        #             -H "X-Github-Api-Version: 2022-11-28" \
+        #             https://api.github.com/repos/$repo_owner/$repo_name/dispatches \
+        #             -d "{\"event_type\": \"$event_type\", \"client_payload\": {\"service\": \"$service\", \"version\": \"$version\"}}"
 
     
