@@ -15,7 +15,7 @@ jobs:
               uses: codex-/return-dispatch@v1
               id: return_dispatch
               with:
-                token: Bearer ${{ secrets.SECRETPAT }}
+                token: ${{ secrets.SECRETPAT }}
                 repo: testes-e2e-cypress
                 owner: hal00010001
                 workflow: develop.yml
@@ -23,7 +23,7 @@ jobs:
             - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
               uses: Codex-/await-remote-run@v1.0.0
               with:
-                token: Bearer ${{ secrets.SECRETPAT }}
+                token: ${{ secrets.SECRETPAT }}
                 repo: return-dispatch
                 owner: codex-
                 run_id: ${{ steps.return_dispatch.outputs.run_id }}
