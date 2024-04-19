@@ -17,6 +17,7 @@ jobs:
               with:
                 workflow: develop.yml
                 repo: hal00010001/testes-e2e-cypress
+                ref: refs/heads/main
                 token: ${{ secrets.SECRETPAT }}
                 
             # - uses: lasith-kg/dispatch-workflow@v1
