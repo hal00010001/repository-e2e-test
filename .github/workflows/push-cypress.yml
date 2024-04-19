@@ -10,32 +10,40 @@ jobs:
     trigger:
         runs-on: ubuntu-latest
 
-        steps:          
-            - uses: lasith-kg/dispatch-workflow@v1
-              id: dispatch-with-discovery
-              name: 'Dispatch Workflow using workflow_dispatch Method'
+        steps:
+
+            - name: Invoke workflow in another repo with inputs
+              uses: aurelien-baudet/workflow-dispatch@v2
               with:
-                dispatch-method: workflow_dispatch
-                repo: testes-e2e-cypress
-                owner: hal00010001
-                discover: true
-                ref: refs/heads/main # or main
-                workflow: develop.yml # Or Workflow ID
-                token: ${{ secrets.SECRETPAT }} # GitHub Token With Relevant Permissions
-            - id: echo-run-id-url
-              name: "Echo Run ID and Run URL"
-              run: |
-                echo "${{ steps.dispatch-with-discovery.outputs.run-id }}"
-                echo "${{ steps.dispatch-with-discovery.outputs.run-url }}"                          
-            - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
-              uses: Codex-/await-remote-run@v1.0.0
-              with:
+                workflow: develop.yml
+                repo: hal00010001/testes-e2e-cypress
                 token: ${{ secrets.SECRETPAT }}
-                repo: return-dispatch
-                owner: codex-
-                run_id: ${{ steps.dispatch-with-discovery.outputs.run-id }}
-                run_timeout_seconds: 300 # Optional
-                poll_interval_ms: 5000 # Optional
+                
+            # - uses: lasith-kg/dispatch-workflow@v1
+            #   id: dispatch-with-discovery
+            #   name: 'Dispatch Workflow using workflow_dispatch Method'
+            #   with:
+            #     dispatch-method: workflow_dispatch
+            #     repo: testes-e2e-cypress
+            #     owner: hal00010001
+            #     discover: true
+            #     ref: refs/heads/main # or main
+            #     workflow: develop.yml # Or Workflow ID
+            #     token: ${{ secrets.SECRETPAT }} # GitHub Token With Relevant Permissions
+            # - id: echo-run-id-url
+            #   name: "Echo Run ID and Run URL"
+            #   run: |
+            #     echo "${{ steps.dispatch-with-discovery.outputs.run-id }}"
+            #     echo "${{ steps.dispatch-with-discovery.outputs.run-url }}"                          
+            # - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
+            #   uses: Codex-/await-remote-run@v1.0.0
+            #   with:
+            #     token: ${{ secrets.SECRETPAT }}
+            #     repo: return-dispatch
+            #     owner: codex-
+            #     run_id: ${{ steps.dispatch-with-discovery.outputs.run-id }}
+            #     run_timeout_seconds: 300 # Optional
+            #     poll_interval_ms: 5000 # Optional
 
         # steps:
         #     - name: Trigger Cypress Workflow
