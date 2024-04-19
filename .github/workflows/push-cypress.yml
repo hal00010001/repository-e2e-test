@@ -19,7 +19,7 @@ jobs:
                 repo: testes-e2e-cypress
                 owner: hal00010001
                 workflow: develop.yml
-                ref: ${{ github.head_ref }}
+                ref: ${{ github.head_ref }}                
             - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
               uses: Codex-/await-remote-run@v1.0.0
               with:
