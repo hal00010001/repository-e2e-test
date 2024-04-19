@@ -26,26 +26,16 @@ jobs:
               name: "Echo Run ID and Run URL"
               run: |
                 echo "${{ steps.dispatch-with-discovery.outputs.run-id }}"
-                echo "${{ steps.dispatch-with-discovery.outputs.run-url }}"
-                
-            # - name: Dispatch an action and get the run ID
-            #   uses: codex-/return-dispatch@v1
-            #   id: return_dispatch
-            #   with:
-            #     token: ${{ secrets.SECRETPAT }}
-            #     repo: testes-e2e-cypress
-            #     owner: hal00010001
-            #     workflow: develop.yml
-            #     ref: ${{ github.head_ref }}                
-            # - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
-            #   uses: Codex-/await-remote-run@v1.0.0
-            #   with:
-            #     token: ${{ secrets.SECRETPAT }}
-            #     repo: return-dispatch
-            #     owner: codex-
-            #     run_id: ${{ steps.return_dispatch.outputs.run_id }}
-            #     run_timeout_seconds: 300 # Optional
-            #     poll_interval_ms: 5000 # Optional
+                echo "${{ steps.dispatch-with-discovery.outputs.run-url }}"                          
+            - name: Await Run ID ${{ steps.return_dispatch.outputs.run_id }}
+              uses: Codex-/await-remote-run@v1.0.0
+              with:
+                token: ${{ secrets.SECRETPAT }}
+                repo: return-dispatch
+                owner: codex-
+                run_id: ${{ steps.dispatch-with-discovery.outputs.run-id }}
+                run_timeout_seconds: 300 # Optional
+                poll_interval_ms: 5000 # Optional
 
         # steps:
         #     - name: Trigger Cypress Workflow
