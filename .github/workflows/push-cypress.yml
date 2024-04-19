@@ -19,7 +19,7 @@ jobs:
                 repo: testes-e2e-cypress
                 owner: hal00010001
                 discover: true
-                # ref: refs/heads/main # or main
+                ref: refs/heads/main # or main
                 workflow: develop.yml # Or Workflow ID
                 token: ${{ secrets.SECRETPAT }} # GitHub Token With Relevant Permissions
             - id: echo-run-id-url
