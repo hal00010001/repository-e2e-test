@@ -12,7 +12,7 @@ jobs:
         
          echo ${{ github.event.pull_request.title }}
 
-        if: ${{ github.event.pull_request.title }} == '*dev*stage*'
+        # if: ${{ github.event.pull_request.title }} == '*dev*stage*'
 
         steps:
             
