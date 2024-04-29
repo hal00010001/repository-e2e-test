@@ -10,9 +10,14 @@ jobs:
     trigger:
         runs-on: ubuntu-latest           
         
-        if: ${{ github.event.pull_request.title }} == 'dev*stage'
+        # if: ${{ github.event.pull_request.title }} == 'dev*stage'
 
         steps:
+
+            - name: Check the Pull Request title
+              uses: deepakputhraya/action-pr-title@master
+              with:
+                allowed_prefixes: 'chore, div, stage'
 
             - name: Invoke workflow in another repo with inputs
               uses: aurelien-baudet/workflow-dispatch@v2
