@@ -15,6 +15,11 @@ jobs:
         runs-on: ubuntu-latest           
         
         steps:
+
+            - name: Check the Pull Request title
+              uses: deepakputhraya/action-pr-title@master
+              with:
+                allowed_prefixes: 'chore, div, stage'
             
             - name: Invoke workflow in another repo with inputs
               uses: aurelien-baudet/workflow-dispatch@v2
