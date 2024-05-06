@@ -16,7 +16,7 @@ jobs:
         - name: Check the Pull Request title
           uses: deepakputhraya/action-pr-title@master
           with:
-            allowed_prefixes: 'dev'
+            allowed_prefixes: 'chore: dev => stage'
 
     trigger:
 
