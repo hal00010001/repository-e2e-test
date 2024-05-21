@@ -29,7 +29,7 @@ jobs:
           - name: Invoke workflow in another repo with inputs
             uses: benc-uk/workflow-dispatch@v1
             with:
-             workflow: develop.yaml
+             workflow: develop.yml
              repo: hal00010001/testes-e2e-cypress                    
              token: "${{ secrets.SECRETPAT }}"
 
