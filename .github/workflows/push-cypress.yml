@@ -26,13 +26,14 @@ jobs:
         runs-on: ubuntu-latest           
         
         steps:   
-          - name: Invoke workflow in another repo with inputs
+          - name: Invoke workflow in another repo
             uses: benc-uk/workflow-dispatch@v1
             with:
              workflow: develop.yml
-             repo: hal00010001/testes-e2e-cypress                    
+            #  repo: hal00010001/testes-e2e-cypress   
+             repo: suflex-co/foodcamp-e2e                 
              token: "${{ secrets.SECRETPAT }}"
-             ref: refs/heads/main
+             ref: refs/heads/main             
 
             # - name: Invoke workflow in another repo
             #   uses: aurelien-baudet/workflow-dispatch@v2
