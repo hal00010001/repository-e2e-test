@@ -25,15 +25,22 @@ jobs:
                
         runs-on: ubuntu-latest           
         
-        steps:                   
-            - name: Invoke workflow in another repo
-              uses: aurelien-baudet/workflow-dispatch@v2
-              with:
-                workflow: develop.yml
-                # repo: hal00010001/testes-e2e-cypress
-                repo: suflex-co/foodcamp-e2e
-                ref: refs/heads/main
-                token: ${{ secrets.SECRETPAT }}
+        steps:   
+          - name: Invoke workflow in another repo with inputs
+            uses: benc-uk/workflow-dispatch@v1
+            with:
+             workflow: develop.yaml
+             repo: hal00010001/testes-e2e-cypress                    
+             token: "${{ secrets.SECRETPAT }}"
+
+            # - name: Invoke workflow in another repo
+            #   uses: aurelien-baudet/workflow-dispatch@v2
+            #   with:
+            #     workflow: develop.yml
+            #     repo: hal00010001/testes-e2e-cypress
+            #     # repo: suflex-co/foodcamp-e2e
+            #     ref: refs/heads/main
+            #     token: ${{ secrets.SECRETPAT }}
 
 
         
