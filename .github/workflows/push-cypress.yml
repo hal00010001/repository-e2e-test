@@ -25,21 +25,15 @@ jobs:
                
         runs-on: ubuntu-latest           
         
-        steps:
-          - uses: actions/checkout@v4
-          - uses: dusansimic/trigger-workflow-action@v0
-            with:
-              name: develop.yml
-              owner: hal00010001
-              repo: testes-e2e-cypress            
-            # - name: Invoke workflow in another repo
-            #   uses: aurelien-baudet/workflow-dispatch@v2
-            #   with:
-            #     workflow: develop.yml
-            #     # repo: hal00010001/testes-e2e-cypress
-            #     repo: suflex-co/foodcamp-e2e
-            #     ref: refs/heads/main
-            #     token: ${{ secrets.SECRETPAT }}
+        steps:                   
+            - name: Invoke workflow in another repo
+              uses: aurelien-baudet/workflow-dispatch@v2
+              with:
+                workflow: develop.yml
+                # repo: hal00010001/testes-e2e-cypress
+                repo: suflex-co/foodcamp-e2e
+                ref: refs/heads/main
+                token: ${{ secrets.SECRETPAT }}
 
 
         
