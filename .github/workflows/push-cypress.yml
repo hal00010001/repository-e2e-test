@@ -30,8 +30,8 @@ jobs:
               uses: aurelien-baudet/workflow-dispatch@v2
               with:
                 workflow: develop.yml
-                # repo: hal00010001/testes-e2e-cypress
-                repo: suflex-co/foodcamp-e2e
+                repo: hal00010001/testes-e2e-cypress
+                # repo: suflex-co/foodcamp-e2e
                 ref: refs/heads/main
                 token: ${{ secrets.SECRETPAT }}
 
